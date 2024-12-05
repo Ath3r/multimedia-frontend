@@ -403,6 +403,13 @@ const Dashboard = () => {
 									className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>
 									Copy
 								</button>
+								<a
+									href={shareUrl}
+									target='_blank'
+									rel='noopener noreferrer'
+									className='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600'>
+									Open
+								</a>
 							</div>
 							<div className='mt-4 flex justify-end'>
 								<button
