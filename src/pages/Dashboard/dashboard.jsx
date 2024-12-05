@@ -411,13 +411,13 @@ const Dashboard = () => {
 									Open
 								</a> */}
 							</div>
-							{/* <div className='mt-4 flex justify-end'>
+							<div className='mt-4 flex justify-end'>
 								<button
 									onClick={() => setShareModalOpen(false)}
 									className='text-gray-600 hover:text-gray-800'>
 									Close
 								</button>
-							</div> */}
+							</div>
 						</div>
 					</div>
 				)}
