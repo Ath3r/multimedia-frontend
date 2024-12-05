@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }) => {
 
 			return { success: true };
 		} catch (error) {
-			toast.error(error.message);
 			console.error('Login error:', error);
 			return { success: false, error: error?.message };
 		}
