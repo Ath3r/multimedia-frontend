@@ -22,6 +22,8 @@ const Dashboard = () => {
 	const [uploadProgress, setUploadProgress] = useState(0);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [isDraggingOver, setIsDraggingOver] = useState(false);
+	const [shareModalOpen, setShareModalOpen] = useState(false);
+	const [shareUrl, setShareUrl] = useState('');
 
 	useEffect(() => {
 		loadFiles();
@@ -134,15 +136,16 @@ const Dashboard = () => {
 	};
 
 	const handleShare = async (file) => {
+		const url = `${window.location.origin}/api/v1/file/${file.id}/view`;
+		setShareUrl(url);
+		setShareModalOpen(true);
+
 		try {
-			const url = `${window.location.origin}/api/v1/file/${file.id}/view`;
 			await navigator.clipboard.writeText(url);
-			toast.success('Public link copied to clipboard!', {
-				onClick: () => window.open(url, '_blank'),
-			});
+			toast.success('Link copied to clipboard!');
 		} catch (error) {
-			console.error('Share error:', error);
-			toast.error(`Failed to generate public link for ${file.name}`);
+			console.error('Copy to clipboard failed:', error);
+			// Don't show error toast since the URL is visible in modal
 		}
 	};
 
@@ -373,6 +376,41 @@ const Dashboard = () => {
 								className='h-full bg-blue-500 rounded-full'
 								style={{ width: `${uploadProgress}%` }}
 							/>
+						</div>
+					</div>
+				)}
+
+				{shareModalOpen && (
+					<div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
+						<div className='bg-white p-6 rounded-lg shadow-xl max-w-lg w-full mx-4'>
+							<h3 className='text-lg font-semibold mb-4'>Share Link</h3>
+							<div className='flex gap-2'>
+								<input
+									type='text'
+									value={shareUrl}
+									readOnly
+									className='flex-1 p-2 border rounded'
+								/>
+								<button
+									onClick={async () => {
+										try {
+											await navigator.clipboard.writeText(shareUrl);
+											toast.success('Link copied to clipboard!');
+										} catch (error) {
+											toast.error('Failed to copy to clipboard');
+										}
+									}}
+									className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>
+									Copy
+								</button>
+							</div>
+							<div className='mt-4 flex justify-end'>
+								<button
+									onClick={() => setShareModalOpen(false)}
+									className='text-gray-600 hover:text-gray-800'>
+									Close
+								</button>
+							</div>
 						</div>
 					</div>
 				)}
