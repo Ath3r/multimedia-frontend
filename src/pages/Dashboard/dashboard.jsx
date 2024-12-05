@@ -391,7 +391,7 @@ const Dashboard = () => {
 									readOnly
 									className='flex-1 p-2 border rounded'
 								/>
-								<button
+								{/* <button
 									onClick={async () => {
 										try {
 											await navigator.clipboard.writeText(shareUrl);
@@ -402,22 +402,22 @@ const Dashboard = () => {
 									}}
 									className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>
 									Copy
-								</button>
-								<a
+								</button> */}
+								{/* <a
 									href={shareUrl}
 									target='_blank'
 									rel='noopener noreferrer'
 									className='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600'>
 									Open
-								</a>
+								</a> */}
 							</div>
-							<div className='mt-4 flex justify-end'>
+							{/* <div className='mt-4 flex justify-end'>
 								<button
 									onClick={() => setShareModalOpen(false)}
 									className='text-gray-600 hover:text-gray-800'>
 									Close
 								</button>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				)}
