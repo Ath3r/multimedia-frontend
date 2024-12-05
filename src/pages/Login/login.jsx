@@ -24,7 +24,6 @@ const Login = () => {
 		try {
 			const result = await signup(data);
 			if (result.success) {
-				console.log('Signup successful');
 				navigate('/dashboard');
 			} else {
 				setError(result.error);
@@ -42,10 +41,9 @@ const Login = () => {
 		try {
 			const result = await login(data);
 			if (result.success) {
-				console.log('Login successful');
 				navigate('/dashboard');
 			} else {
-				console.log(result);
+				setError(result.error);
 			}
 		} catch (err) {
 			setError(err.message || 'An unexpected error occurred');

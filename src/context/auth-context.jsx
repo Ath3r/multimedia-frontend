@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import authService from '../services/auth.service';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext(null);
 
@@ -31,8 +32,9 @@ export const AuthProvider = ({ children }) => {
 
 			return { success: true };
 		} catch (error) {
+			toast.error(error.message);
 			console.error('Login error:', error);
-			return { success: false, error: error.message };
+			return { success: false, error: error?.message };
 		}
 	};
 
